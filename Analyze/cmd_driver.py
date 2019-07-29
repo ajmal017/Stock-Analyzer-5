@@ -17,7 +17,7 @@ from Analyze import save_xlsx
 
 class driver():
 
-    def run_analytics(excel_file):
+    def run_analytics(excel_file, iex_key):
         """
         Base function to call required helper functions and modules to get
         API Data from the IEX Cloud API and output an Excel file.
@@ -25,7 +25,8 @@ class driver():
         """
         
         # IEX Cloud authorization token
-        auth_key_IEX = 'sk_ec8ee7409d5e49ddaff9e13db9068b5b';
+        #auth_key_IEX = 'sk_ec8ee7409d5e49ddaff9e13db9068b5b';
+        auth_key_IEX = iex_key
         
         # create data frame of stock holdings
         print("\nGathering current holdings ...")
