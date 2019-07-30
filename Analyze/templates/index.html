@@ -100,8 +100,169 @@
  
                 
                 <!-- Display loading/results after form submit -->
-                <div id="loading-results" form-submitted="no" name="{{ data }}"> 
-                    <h4>Loading ... </h4>
+                <div id="loading-results" form-submitted="no" name="{{ data }}" style="align-items: center;"> 
+                    <div style="display: inline-block; height: 100%; vertical-align: middle;">
+                        <h4>Loading</h4>
+                    </div>
+                    <div class="lds-css ng-scope" style="display: inline-block; height: 100%; vertical-align: middle;">
+                        <div style="width:100%;height:100%;" class="lds-pacman">
+                            <div>
+                                <div>
+                                </div>
+                                
+                                <div>
+                                </div>
+                                
+                                <div>
+                                </div>                             
+                            </div>
+                            
+                            <div>
+                                <div>
+                                </div>
+                                
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                        <style type="text/css">
+                        @keyframes lds-pacman-1 {
+                              0% {
+                                -webkit-transform: rotate(0deg);
+                                transform: rotate(0deg);
+                              }
+                              50% {
+                                -webkit-transform: rotate(-45deg);
+                                transform: rotate(-45deg);
+                              }
+                              100% {
+                                -webkit-transform: rotate(0deg);
+                                transform: rotate(0deg);
+                              }
+                            }
+                            @-webkit-keyframes lds-pacman-1 {
+                              0% {
+                                -webkit-transform: rotate(0deg);
+                                transform: rotate(0deg);
+                              }
+                              50% {
+                                -webkit-transform: rotate(-45deg);
+                                transform: rotate(-45deg);
+                              }
+                              100% {
+                                -webkit-transform: rotate(0deg);
+                                transform: rotate(0deg);
+                              }
+                            }
+                            @keyframes lds-pacman-2 {
+                              0% {
+                                -webkit-transform: rotate(180deg);
+                                transform: rotate(180deg);
+                              }
+                              50% {
+                                -webkit-transform: rotate(225deg);
+                                transform: rotate(225deg);
+                              }
+                              100% {
+                                -webkit-transform: rotate(180deg);
+                                transform: rotate(180deg);
+                              }
+                            }
+                            @-webkit-keyframes lds-pacman-2 {
+                              0% {
+                                -webkit-transform: rotate(180deg);
+                                transform: rotate(180deg);
+                              }
+                              50% {
+                                -webkit-transform: rotate(225deg);
+                                transform: rotate(225deg);
+                              }
+                              100% {
+                                -webkit-transform: rotate(180deg);
+                                transform: rotate(180deg);
+                              }
+                            }
+                            @keyframes lds-pacman-3 {
+                              0% {
+                                -webkit-transform: translate(190px, 0);
+                                transform: translate(190px, 0);
+                                opacity: 0;
+                              }
+                              20% {
+                                opacity: 1;
+                              }
+                              100% {
+                                -webkit-transform: translate(70px, 0);
+                                transform: translate(70px, 0);
+                                opacity: 1;
+                              }
+                            }
+                            @-webkit-keyframes lds-pacman-3 {
+                              0% {
+                                -webkit-transform: translate(190px, 0);
+                                transform: translate(190px, 0);
+                                opacity: 0;
+                              }
+                              20% {
+                                opacity: 1;
+                              }
+                              100% {
+                                -webkit-transform: translate(70px, 0);
+                                transform: translate(70px, 0);
+                                opacity: 1;
+                              }
+                            }
+                            .lds-pacman {
+                              position: relative;
+                            }
+                            .lds-pacman > div:nth-child(2) div {
+                              position: absolute;
+                              top: 40px;
+                              left: 40px;
+                              width: 120px;
+                              height: 60px;
+                              border-radius: 120px 120px 0 0;
+                              background: #f3f3f3;
+                              -webkit-animation: lds-pacman-1 0.6s linear infinite;
+                              animation: lds-pacman-1 0.6s linear infinite;
+                              -webkit-transform-origin: 60px 60px;
+                              transform-origin: 60px 60px;
+                            }
+                            .lds-pacman > div:nth-child(2) div:nth-child(2) {
+                              -webkit-animation: lds-pacman-2 0.6s linear infinite;
+                              animation: lds-pacman-2 0.6s linear infinite;
+                            }
+                            .lds-pacman > div:nth-child(1) div {
+                              position: absolute;
+                              top: 92px;
+                              left: -8px;
+                              width: 16px;
+                              height: 16px;
+                              border-radius: 50%;
+                              background: #d8dddf;
+                              -webkit-animation: lds-pacman-3 0.6s linear infinite;
+                              animation: lds-pacman-3 0.6s linear infinite;
+                            }
+                            .lds-pacman > div:nth-child(1) div:nth-child(1) {
+                              -webkit-animation-delay: -0.402s;
+                              animation-delay: -0.402s;
+                            }
+                            .lds-pacman > div:nth-child(1) div:nth-child(2) {
+                              -webkit-animation-delay: -0.198s;
+                              animation-delay: -0.198s;
+                            }
+                            .lds-pacman > div:nth-child(1) div:nth-child(3) {
+                              -webkit-animation-delay: 0s;
+                              animation-delay: 0s;
+                            }
+                            .lds-pacman {
+                              width: 75px !important;
+                              height: 75px !important;
+                              -webkit-transform: translate(-37.5px, -37.5px) scale(0.375) translate(37.5px, 37.5px);
+                              transform: translate(-37.5px, -37.5px) scale(0.375) translate(37.5px, 37.5px);
+                            }
+                        </style>
+                    </div>
                 </div>
                 
                 <div id="results" form-submitted="no" name="{{ data }}"> 
