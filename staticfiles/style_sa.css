@@ -637,7 +637,7 @@ nav.navbar.navbar-light.navbar-expand-xl.bg-light.grey.lighten-4.fixed-top.justi
     box-shadow: rgb(143, 146, 148);
 }
     
-#dl-button-temp {
+#dl-button {
     -moz-box-shadow: 0px 0px 0px 0px rgb(57, 58, 59);
 	-webkit-box-shadow: 0px 0px 0px 0px rgb(57, 58, 59);
 	box-shadow: 0px 0px 0px 0px rgb(57, 58, 59);
@@ -663,49 +663,9 @@ nav.navbar.navbar-light.navbar-expand-xl.bg-light.grey.lighten-4.fixed-top.justi
     text-align: center;
 }
     
-#dl-button-temp:hover {
+#dl-button:hover {
     background-color:rgba(44, 45, 46, 0.24);
     box-shadow: rgb(143, 146, 148);
-    text-decoration: none !important;
-}
-
-#dl-button-temp:link:hover {
-    text-decoration: none !important;
-}
-
-#dl-button-final {
-    -moz-box-shadow: 0px 0px 0px 0px rgb(57, 58, 59);
-	-webkit-box-shadow: 0px 0px 0px 0px rgb(57, 58, 59);
-	box-shadow: 0px 0px 0px 0px rgb(57, 58, 59);
-	background-color:transparent;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid rgb(57, 58, 59);
-	display:inline-block;
-	cursor:pointer;
-	color:rgb(57, 58, 59);
-	font-family: 'Unica One', cursive;
-	font-size:17px;
-	padding: 20px;
-	text-decoration:none !important;
-    text-shadow:0px 1px 0px rgb(44, 45, 46);
-    height: 30px;
-    display: inline-flex;
-    align-items: center;
-    line-height: 1px;
-    width: 100%;
-    display: block;
-    text-align: center;
-}
-    
-#dl-button-final:hover {
-    background-color:rgba(44, 45, 46, 0.24);
-    box-shadow: rgb(143, 146, 148);
-    text-decoration: none !important;
-}
-
-#dl-button-final:link:hover {
     text-decoration: none !important;
 }
 

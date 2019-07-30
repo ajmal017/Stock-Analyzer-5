@@ -22,6 +22,7 @@
 <body>
     <div class="container-fluid">
             
+        <!-- NAVBAR -->
         <nav class="navbar navbar-light navbar-expand-xl bg-light grey lighten-4 fixed-top justify-content-between">
             <div class="container-fluid" style="box-sizing: border-box;">
                 <button class="navbar-toggler order-2" type="button" data-toggle="collapse" data-target=".dual-nav">
@@ -49,27 +50,25 @@
             
             </div>
         </nav>
-            
-        
 
         <section id="about" style="">
             
             <div class="animation-container" id="file-upload">
                 
             
-                
+                <!-- Download template -->
                 <form action="{% url "Analyze:index" %}" method="get" enctype="multipart/form-data">
                     <h4>Download Template File</h4>
                     
                     {% load static %}
-                    <a id="dl-button" href="{% static 'holdings.xlsx' %}">Download Template</a>
+                    <a id="dl-button-temp" href="{% static 'holdings.xlsx' %}" style="text-decoration : none">Download Template</a>
                     <p>
                 </form>
                 <hr>
 
-                
-                <form action="{% url "Analyze:index" %}" method="post" enctype="multipart/form-data">
-                    
+                <!-- Input IEX Key and upload template -->
+                <form method="post" id="upload-form" enctype="multipart/form-data"">
+                    <!-- action="{% url "Analyze:index" %}" method="post" enctype="multipart/form-data" -->
                     <h4>IEX Authorization Key</h4>
 
                     <input type="text"
@@ -94,60 +93,57 @@
                     
                     <div id="file-upload-filename"></div>
 
-                    <input type="submit" id="run-report" value="Run Stock Report"/>
-                    <p>{{ data }}</p>   
-                    <!--  onclick="document.getElementById('results').style.display = 'block' ;" --> 
+                    <input type="submit" id="run-report" value="Run Stock Report" style="display: none;"/> 
                 </form>
+                <input type="button" id="submit-button" value="Run Stock Report"/>  
                 <hr>
  
                 
-                <!-- HIDE BELOW UNTIL REPORT IS RAN -->
- 
-                <div id="loading-results" style="display: none;"> 
+                <!-- Display loading/results after form submit -->
+                <div id="loading-results" form-submitted="no" name="{{ data }}"> 
                     <h4>Loading ... </h4>
                 </div>
                 
-                <div id="results" style="display: none;"> 
+                <div id="results" form-submitted="no" name="{{ data }}"> 
+                    
                     <h4>Results</h4>
-                    
-                    
-                    
-                        {% for key, value in excel_data_dict.items %}
-                            <h6> {{ key|default_if_none:"No data to report. " }} </h6>
-                            <table>                                
-                                {% for key_part, value_part in value.items %}
-                                    <tr>
-                                        <td style="border-right: 1px solid #F6F5F5"> {{ key_part }} </td>
-                                        {% for val in value_part %}
-                                            <td> {{ val }} </td>
-                                        {% endfor %}
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                            <br><br><br>
-                        {% endfor %}
-                        
-                    
-                                
+
+                    {% for key, value in excel_data_dict.items %}
+                        <h6> {{ key|default_if_none:"No data to report. " }} </h6>
+                        <table>                                
+                            {% for key_part, value_part in value.items %}
+                                <tr>
+                                    <td colspan="3" style="border-right: 1px solid #F6F5F5"> {{ key_part }} </td>
+                                    {% for val in value_part %}
+                                        <td colspan="3"> {{ val }} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <br><br><br>
+                    {% endfor %}
                     <br>
                         
                     <form action="{% url "Analyze:index" %}" method="get" enctype="multipart/form-data">
-                        <a id="dl-button" href="{{ MEDIA_URL }}stock_data.xlsx">Download File</a>
+                        <a id="dl-button-final" href="{{ MEDIA_URL }}stock_data.xlsx" >Download File</a>
                     </form>
-                    <hr> 
+                    <hr>
+                    
                 </div>
 
            </div>
-            
-                
-            
+ 
         </section>
     </div>
+    
+    
     
     <!-- SCRIPTS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <!-- script to show file upload once selected -->
     <script>
         var input = document.getElementById( 'file-upload' );
         var infoArea = document.getElementById( 'file-upload-filename' );
@@ -164,25 +160,31 @@
             infoArea.textContent = 'File name: ' + fileName;
         }
     </script>
-            
-    <script type="text/javascript">
-        $(document).ready(function() {
-            
-            var status = {{ data }}
-            
-            $("#run-report").click(function() {
-                if(status == "hide") {   
-                    $("#loading-results").show();
-                } else {
-                    $("#results").toggle();
-                }
-            });
-
-            
-            
+       
+    <!-- script to show/hide loading and results divs and appropriate times -->     
+    <script>   
+        $(document).ready(function(){
+            if($('#results').attr('form-submitted') == "no" && $('#results').attr('name') == "hide") {
+               $('#results').hide(); 
+            }
+            if($('#loading-results').attr('form-submitted') == "no" && $('#loading-results').attr('name') == "hide") {
+               $('#loading-results').hide(); 
+            }
+            if($('#loading-results').attr('form-submitted') == "no" && $('#loading-results').attr('name') == "show") {
+               $('#loading-results').hide(); 
+            }
+               
         });
+        
+        $(document).ready(function(){
+            $("#submit-button").click(function(event){
+                $("#loading-results").show();
+
+                $("#upload-form").submit();
+            });
+        });
+
     </script>
-    
 </body>
 
 </html>
