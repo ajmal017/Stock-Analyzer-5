@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800,900|Inconsolata|Unica+One&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
-    
-    
+
 </head>
 
 <body>
@@ -102,7 +100,7 @@
                 <!-- Display loading/results after form submit -->
                 <div id="loading-results" form-submitted="no" name="{{ data }}" style="align-items: center;"> 
                     <div style="display: inline-block; height: 100%; vertical-align: middle;">
-                        <h4>Loading</h4>
+                        <h4>Running Your Report</h4>
                     </div>
                     <div class="lds-css ng-scope" style="display: inline-block; height: 100%; vertical-align: middle;">
                         <div style="width:100%;height:100%;" class="lds-pacman">
@@ -270,20 +268,41 @@
                     <h4>Results</h4>
 
                     {% for key, value in excel_data_dict.items %}
-                        <h6> {{ key|default_if_none:"No data to report. " }} </h6>
-                        <table>                                
+                        <h5 style="width: 100%; text-align: center;"> {{ key|default_if_none:"No data to report. " }} </h5>
+                        <table style="display: block; overflow-x: auto; white-space:nowrap; width: 100%;">                                
                             {% for key_part, value_part in value.items %}
-                                <tr>
-                                    <td colspan="3" style="border-right: 1px solid #F6F5F5"> {{ key_part }} </td>
+                                <tr style="width: 100%; height:20px;">
+                                    <td colspan="3" style="border-right: 1px solid #F6F5F5; padding-top: 0px; padding-bottom: 0px; margin-top: 0px; margin-bottom: 0px;"> {{ key_part }} </td>
                                     {% for val in value_part %}
-                                        <td colspan="3"> {{ val }} </td>
+                                        <td colspan="3" style="padding-top: 0px; padding-bottom: 0px; margin-top: 0px; margin-bottom: 0px;"> {{ val }} </td>
                                     {% endfor %}
                                 </tr>
                             {% endfor %}
                         </table>
+                        
+                        <br><br>
+                        
+                        <table style="display: block; overflow-x: auto; white-space: nowrap; width: 100%;">
+                            <tr style="width: 100%; text-align: center;">
+                            {% for k, v in web_charts.items %}
+                                {% if key == k %}
+                                    {% for k1, v1 in v.items %}
+                                        
+                                        <td colspan="3" style="border-right: 1px solid #F6F5F5;">
+                                            <h5 style="font-family: 'Unica One', cursive;"> {{ k1 }} </h5>
+                                            <img src="{{ v1 }}" />
+                                        </td>
+                                    {% endfor %}
+                                {% endif %}
+                                
+                            {% endfor %}
+                            </tr>
+                        </table>
+                        
                         <br><br><br>
+                        
                     {% endfor %}
-                    <br>
+                    
                         
                     <form action="{% url "Analyze:index" %}" method="get" enctype="multipart/form-data">
                         <a id="dl-button-final" href="{{ MEDIA_URL }}stock_data.xlsx" >Download File</a>

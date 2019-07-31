@@ -25,7 +25,6 @@ class driver():
         """
         
         # IEX Cloud authorization token
-        #auth_key_IEX = 'sk_ec8ee7409d5e49ddaff9e13db9068b5b';
         auth_key_IEX = iex_key
         
         # create data frame of stock holdings
@@ -38,12 +37,12 @@ class driver():
         api_data_dict = get_api_data.get_data(current_holdings_symbols, current_holdings_df, auth_key_IEX)
         print("API data successfully gathered!")
         
-        # perform analysis on the data
+        # perform analysis on the data & format for web output
         print("\nAnalyzing data ...")
-        analyzed_data_dict = perform_data_analysis.calculate_totals(api_data_dict)
+        analyzed_data_dict, analyzed_data_dict_web, analyzed_charts_list = perform_data_analysis.calculate_totals(api_data_dict)
         print("Data successfully analyzed!")
         
-        # convert to dataframe
+        # convert to dataframe 
         print("\nPerforming conversions on data ...")
         analyzed_data_dict = copy.deepcopy(analyzed_data_dict)
         analyzed_data_dict_df = convert_to_dataframe.perform_conversion(analyzed_data_dict)
@@ -54,7 +53,7 @@ class driver():
         save_xlsx.write_xlsx(analyzed_data_dict_df)  
         print("Excel formatting completed!")
         
-        return analyzed_data_dict_df, analyzed_data_dict
+        return analyzed_data_dict_df, analyzed_data_dict_web, analyzed_charts_list
         
 
 # run program as driver
