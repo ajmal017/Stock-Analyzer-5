@@ -1,0 +1,1 @@
+web: gunicorn sherrbss.wsgi --log-file -
